@@ -26,12 +26,10 @@ year_list = [i for i in range(1980, 2024, 1)]
 #---------------------------------------------------------------------------------------
 # Create the layout of the app
 app.layout = html.Div([
-    #TASK 2.1: Add title to the dashboard
     html.H1("Automobile Sales Statistics Dashboard",
             style={'textAlign': 'center',
                    'color': '#503D36',
                    'font-size': 24}),
-    #TASK 2.2: Add two dropdown menus
     html.Div([
         html.Label("Select Statistics:"),
         dcc.Dropdown(
@@ -47,14 +45,11 @@ app.layout = html.Div([
         value='Select-year',
         placeholder='Select-year'
     )),
-    #TASK 2.3: Add a division for output display
     html.Div([
         html.Div(id='output-container', className='chart-grid', style={'display': 'flex'}),
     ])
 ])
 
-#TASK 2.4: Creating Callbacks
-# Define the callback function to update the input container based on the selected statistics
 @app.callback(
     Output(component_id='select-year', component_property='disabled'),
     Input(component_id='dropdown-statistics', component_property='value'))
@@ -64,8 +59,6 @@ def update_input_container(selected_statistics):
     else:
         return True
 
-# Callback for plotting
-# Define the callback function to update the output container based on the selected statistics
 @app.callback(
     Output(component_id='output-container', component_property='children'),
     [Input(component_id='dropdown-statistics', component_property='value'),
@@ -75,7 +68,6 @@ def update_output_container(selected_statistics, input_year):
         # Filter the data for recession periods
         recession_data = data[data['Recession'] == 1]
 
-        #TASK 2.5: Create and display graphs for Recession Report Statistics
 
         #Plot 1: Automobile sales fluctuate over Recession Period (year wise)
         yearly_rec = recession_data.groupby('Year')['Automobile_Sales'].mean().reset_index()
@@ -120,8 +112,7 @@ def update_output_container(selected_statistics, input_year):
                      children=[html.Div(children=R_chart3), html.Div(children=R_chart4)],
                      style={'display': 'flex'})
         ]
-
-    #TASK 2.6: Create and display graphs for Yearly Report Statistics
+        
     elif (input_year and selected_statistics == 'Yearly Statistics'):
         yearly_data = data[data['Year'] == input_year]
 
