@@ -11,6 +11,10 @@ Final project for the **Data Visualization with Python** course (NPower Canada).
   - *Yearly Statistics*: average yearly sales, monthly totals, sales and ad spend by vehicle type
   - *Recession Period Statistics*: sales during recessions, ad spend share, effect of unemployment
 
+## Screenshots
+
+RecessionReportgraphs.png · YearlyReportgraphs.png
+
 ## Tech stack
 
 Python · pandas · matplotlib · seaborn · Plotly · Dash
